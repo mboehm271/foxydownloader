@@ -1,6 +1,6 @@
 # Foxydownloader
 
-Script to download SGF-Files from Fox Weiqi (fixing the strange Komi format of Fox).
+Script to download SGF-Files from Fox Weiqi (fixing the strange Komi format of Fox) and either save them to disk or upload them to OGS.
 
 ## Requirements
 - python v3.x
