@@ -12,7 +12,11 @@ Script to download SGF-Files from Fox Weiqi (fixing the strange Komi format of F
 
 ## Installation
 It suffices to download the script or clone it to your pc:
-``` git clone https://github.com/mboehm271/foxydownloader ```
+``` 
+git clone https://github.com/mboehm271/foxydownloader 
+```
 
 ## Usage 
-``` python /path/to/foxydownloader.py ```
+``` 
+python /path/to/foxydownloader.py 
+```
