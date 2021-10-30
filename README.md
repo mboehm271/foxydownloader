@@ -20,3 +20,6 @@ git clone https://github.com/mboehm271/foxydownloader
 ``` 
 python /path/to/foxydownloader.py 
 ```
+
+## Thanks
+for the people in this thread https://github.com/featurecat/go-dataset/issues/1 whose code was mainly adapted here
