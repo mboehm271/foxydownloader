@@ -3,7 +3,7 @@
 Script to download SGF-Files from Fox Weiqi (fixing the strange Komi format of Fox).
 
 ## Requirements
-- python 3.*
+- python v3.x
 - the module `simple-term-menu`
   ``` 
   pip install simple-term-menu 
