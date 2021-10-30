@@ -20,6 +20,12 @@ git clone https://github.com/mboehm271/foxydownloader
 ``` 
 python /path/to/foxydownloader.py 
 ```
+As the script saves the files in the currend directory it's useful to make it usable from anywhere. In most linux distributions and in WSL you can do this by creating a file `foxydownloader` in `~/.local/bin` containing
+```
+#!/bin/sh
+python /path/to/foxydownloader.py 
+```
+and running `chmod +x ~/.local/bin/foxydownloader`. Then you can just call `foxydownloader` from anywhere.
 
 ## Thanks
 for the people in this thread https://github.com/featurecat/go-dataset/issues/1 whose code was mainly adapted here
