@@ -14,6 +14,8 @@ OGS_CLIENT_SECRET="***REMOVED***"
 def komi_replacement(m):
     s = m.group()
     n = int(s[3:-1])
+    if n == 0:
+        return s
     new = str(2*n)
     return "KM[" + new[:-2] + "." + new[-2:] + "]"
 
