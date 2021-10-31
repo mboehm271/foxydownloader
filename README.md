@@ -17,7 +17,7 @@ git clone https://github.com/mboehm271/foxydownloader
 ```
 
 ## Configuration
-To make OGS upload work you need to configure an OGS Oauth client id and secret. For this either ask a friend who trusts you or go to https://online-go.com/oauth2/applications/ and register an application with Authorization grant type `Resource owner password-based`. 
+To make OGS upload work you need to configure an OGS Oauth2 client id and secret. For this either ask a friend who trusts you or go to https://online-go.com/oauth2/applications/ and register an application with Authorization grant type `Resource owner password-based`. 
 
 Then create the file `~/.config/foxydownloader/config` on linux and WSL or `~/Library/Preferences/foxydownloader/config` on Mac with the following content:
 ```
