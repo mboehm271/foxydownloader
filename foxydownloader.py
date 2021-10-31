@@ -3,13 +3,14 @@
 
 import requests
 import sys
+import appdirs
 import re
+import yaml
+import io
 import codecs
 from getpass import getpass
 from simple_term_menu import TerminalMenu
 
-OGS_CLIENT_ID="***REMOVED***"
-OGS_CLIENT_SECRET="***REMOVED***"
 
 def komi_replacement(m):
     s = m.group()
@@ -87,13 +88,13 @@ def download_sgf(cid):
                 sys.exit(1)
     return sgf
 
-def get_ogs_token(username, password):
+def get_ogs_token(client_id, client_secret, username, password):
     values = { 
             "grant_type":"password",
             "username":username,
             "password":password,
-            "client_id":OGS_CLIENT_ID,
-            "client_secret":OGS_CLIENT_SECRET,
+            "client_id":client_id,
+            "client_secret":client_secret,
             }
     url = "https://online-go.com/oauth2/token/"
     try:
@@ -122,21 +123,34 @@ def upload_to_ogs(filename, sgf, token_type, access_token):
 
 
 def main():
+    no_ogs=False
+    try:
+        ogs_option_file = io.open(appdirs.user_config_dir("foxydownloader")+'/config', 'r', encoding='utf8')
+        data_loaded = yaml.safe_load(ogs_option_file)
+        OGS_CLIENT_ID = data_loaded['ogs-client-id']
+        OGS_CLIENT_SECRET=data_loaded['ogs-client-secret']
+    except Exception as e:
+        print(e)
+        print("OGS client data not set or set incorrectly. Please refer to the readme on how to configure this to upload to OGS.")
+        no_ogs = True
+
     ogs_upload = False
-    ogs_access_token = ""
-    ogs_token_type = ""
+    if not(no_ogs):
+        ogs_access_token = ""
+        ogs_token_type = ""
 
-    print("What do you want to do with the downloaded Fox games?")
-    options = ["Upload to OGS", "Save to disk"]
-    terminal_menu = TerminalMenu(options)
-    index = terminal_menu.show()
+        print("What do you want to do with the downloaded Fox games?")
+        options = ["Save to disk","Upload to OGS"]
+        terminal_menu = TerminalMenu(options)
+        index = terminal_menu.show()
 
-    if index == None:
-        print("Aborting.")
-        sys.exit(0)
-    elif index == 0:
-        ogs_upload = True
-        ogs_token_type, ogs_access_token = get_ogs_token(input("OGS username: "), getpass("OGS password: "))
+        if index == None:
+            print("Aborting.")
+            sys.exit(0)
+        elif index == 1:
+            ogs_upload = True
+            ogs_token_type, ogs_access_token = get_ogs_token(OGS_CLIENT_ID, OGS_CLIENT_SECRET, \
+                    input("OGS username: "), getpass("OGS password: "))
 
     username = input("Fox username: ")
 
@@ -145,7 +159,6 @@ def main():
     lastCode = ""
     while True:
         chessids, names = game_list(lastCode, username, uid)
-
         
         n = len(names)
         names.append("older games ...")
