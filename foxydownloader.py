@@ -11,7 +11,9 @@ import codecs
 from getpass import getpass
 from simple_term_menu import TerminalMenu
 
-
+# yes this code looks weird but so is fox's komi notation 
+# which is giving a number without specifying the decimal point
+# seriously wtf?
 def komi_replacement(m):
     s = m.group()
     n = int(s[3:-1])
