@@ -38,4 +38,4 @@ python /path/to/foxydownloader.py
 and running `chmod +x ~/.local/bin/foxydownloader`. Then you can just call `foxydownloader` from anywhere.
 
 ## Thanks
-for the people in this thread https://github.com/featurecat/go-dataset/issues/1 whose code was mainly adapted here
+to the people in this thread https://github.com/featurecat/go-dataset/issues/1 whose code was mainly adapted here
