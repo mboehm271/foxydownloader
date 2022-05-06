@@ -26,6 +26,9 @@ def fix_komi(sgf):
     regex = r"KM\[[1-9][0-9]*\]"
     return re.sub(regex, komi_replacement, sgf)
 
+def standardize_ranks(sgf):
+    return sgf.replace("级","k*").replace("段","d*")
+
 def get_uid(username):
     values = { 
             "srcuid":0,
@@ -186,7 +189,7 @@ def main():
         else:
             print(f"Downloading {names[index]} ...")
             filename=names[index]+".sgf"
-            sgf = fix_komi(download_sgf(chessids[index]))
+            sgf = standardize_ranks(fix_komi(download_sgf(chessids[index])))
             if ogs_upload:
                 upload_to_ogs(filename, sgf, ogs_token_type, ogs_access_token)
             else:
