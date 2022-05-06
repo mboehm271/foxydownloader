@@ -37,7 +37,7 @@ def get_uid(username):
             }
     url = "http://h5.foxwq.com/getFechInfo/wxnseed/txwq_fetch_personal_info"
     try:
-        response = requests.get(url,data=values)
+        response = requests.get(url,params=values)
         return response.json()['uid']
     except Exception as e:
         print(e)
